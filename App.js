@@ -1,20 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import DashboardDrawer from './screens/DashboardDrawer';
 
 export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
+      <DashboardDrawer isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
